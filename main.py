@@ -11,7 +11,13 @@ customer_invoice = invoce.items
 
 customer_name = input("Please enter your name: ").title()
 
-print(f"Hello, {customer_name}! Here are our available products:")
+customer_age = int(input("Please input your age: "))
+
+if customer_age < 18:
+    print("You are not liable to purchase our products, must be 18 or older")
+    exit()
+elif customer_age >= 18:
+ print(f"Hello, {customer_name}! Here are our available products:")
 
 print(database.fetch_products())
 
@@ -20,7 +26,7 @@ product_name = input("Please enter the name of the product you wish to purchase:
 while True:
     if product_name not in database.fetch_products().name.values:
         print("Sorry, we do not have that product available.")
-    elif product_name in database.fetch_products().name.values:
+    elif product_name in database.fetch_products().name.values and customer_age >= 18:
         product = database.fetch_products()[database.fetch_products().name == product_name]
         product_id = database.fetch_products()[database.fetch_products().name == product_name].id.item()
         price = product.price.item()
