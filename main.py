@@ -45,22 +45,27 @@ while shop:
         price = product.price.item()
         print(f"The price of {product_name} is ${price} per unit.")
         customer_invoice.append(product_name)
-        invoce.add_item(price)
+        invoce.add_item(price * product_quantity)
         if product_name in cart:
             cart[f"{product_name}"] += product_quantity
         elif product_name not in cart:
             cart[f"{product_name}"] = product_quantity
-        # database.insert_customer(name=database.customer_name, age=customer_age)
-        # database.insert_sale(product_id=product_id, sale_date=date, )
+        database.insert_customer(name=database.customer_name, age=customer_age)
+        database.insert_sale(product_id=product_id, sale_date=date, quantity=product_quantity)
         print(f"{product_name} has been added to your invoice.")
-    add_to_cart = input("Would you like to keep shopping? Yes or No?: ")
+    add_to_cart = input("Would you like to keep shopping? Yes or No?: ").lower()
     if add_to_cart == "yes":
         shop = True
     elif add_to_cart == "no":
         shop = False
+        receipt = pd.DataFrame(list(cart.items()), columns=["Product", "Quantity"])
+        receipt["Price"] = price
+        print(receipt)
     print(cart)
             
- 
+
+
+        
             
 
 

@@ -9,7 +9,7 @@ class Database:
         
     
     def create_tables(self):
-        self.cur.execute("CREATE TABLE IF NOT EXISTS products (id INTEGER PRIMARY KEY, name TEXT, category TEXT, stock INT, price REAL)")
+        self.cur.execute("CREATE TABLE IF NOT EXISTS products (id INTEGER PRIMARY KEY, name TEXT, category TEXT, price REAL)")
         self.cur.execute("CREATE TABLE IF NOT EXISTS sales (id INTEGER PRIMARY KEY, product_id INTEGER, customer_id INTEGER, quantity INTEGER, sale_date TIMESTAMP, FOREIGN KEY(product_id) REFERENCES products(id), FOREIGN KEY(customer_id) REFERENCES customer(id))")
         self.con.commit()
     
@@ -17,7 +17,7 @@ class Database:
         self.cur.execute(f"CREATE TABLE IF NOT EXISTS customer (id INTEGER PRIMARY KEY, name TEXT, age INTEGER)")
         
     def insert_customer(self, name, age):
-        self.cur.execute("INSERT INTO customer (name, vorname) VALUES (?, ?)", (name, age))
+        self.cur.execute("INSERT INTO customer (name, age) VALUES (?, ?)", (name, age))
         
     def insert_product(self, name, category, price):
         self.cur.execute("INSERT INTO products (name, category, price) VALUES (?, ?, ?)", (name, category, price))
