@@ -68,8 +68,12 @@ while shop:
         receipt = pd.DataFrame(receipt_rows, columns=["Product", "Product_quantity", "Unit_price", "Subtotal"])
         total = receipt.Subtotal.sum()
         receipt.loc[len(receipt)] = ["TOTAL", "", "", total]
+        receipt.to_csv("receipt.csv", index=False)
         print(receipt)
-    print(cart)
+    else:
+        print("Please type Yes or No")
+        add_to_cart = input("Would you like to keep shopping? Yes or No?: ").lower()
+        
             
 
 
