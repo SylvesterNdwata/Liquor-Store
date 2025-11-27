@@ -58,8 +58,16 @@ while shop:
         shop = True
     elif add_to_cart == "no":
         shop = False
-        receipt = pd.DataFrame(list(cart.items()), columns=["Product", "Quantity"])
-        receipt["Price"] = price
+        receipt_rows = []
+        products = database.fetch_products()
+        for product_name, product_quantity in cart.items():
+            product = products[products["name"] == product_name]
+            unit_price = product.price.item()
+            subtotal = unit_price * product_quantity
+            receipt_rows.append((product_name, product_quantity, unit_price, subtotal))
+        receipt = pd.DataFrame(receipt_rows, columns=["Product", "Product_quantity", "Unit_price", "Subtotal"])
+        total = receipt.Subtotal.sum()
+        receipt.loc[len(receipt)] = ["TOTAL", "", "", total]
         print(receipt)
     print(cart)
             
