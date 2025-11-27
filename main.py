@@ -19,7 +19,6 @@ customer_age = int(input("Please input your age: "))
 
 x = datetime.now()
 date = x.strftime("%x")
-print(date)
 
 if customer_age < 18:
     print("You are not liable to purchase our products, must be 18 or older")
