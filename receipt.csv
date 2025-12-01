@@ -1,6 +1,5 @@
 Product,Product_quantity,Unit_price,Subtotal
-Wine,12,15.49,185.88
-Vodka,4,29.99,119.96
-Tequila,9,39.99,359.91
-Beer,24,5.99,143.76
-TOTAL,,,809.51
+Whiskey,3,45.99,137.97
+Wine,2,15.49,30.98
+Beer,5,5.99,29.950000000000003
+TOTAL,,,198.89999999999998

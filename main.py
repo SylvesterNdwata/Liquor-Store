@@ -26,6 +26,7 @@ if customer_age < 18:
 elif customer_age >= 18:
  print(f"Hello, {database.customer_name}! Here are our available products:")
 
+print(database.fetch_products())
 
 cart = {}
 
